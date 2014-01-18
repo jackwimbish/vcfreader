@@ -10,10 +10,13 @@ from vcfreader import VCFReader
 
 vcfr = VCFReader('/path/to/my_vcf.vcf')
 
+# show which samples are in this file
+print ', '.join(vcfr.samples)
+
 while vcfr.nextentry():
-    # let me see the genotype of sample A0001
-    gt = vcfr.getgenotype('A0001')
-    print gt
+    # let me see the genotype of the first sample in this VCF
+    gt = vcfr.getgenotype(vcfr.samples[0])
+    print ','.join(gt)
 
     # let me see the AF at this variant
     print vcfr.INFO.get('AF')
